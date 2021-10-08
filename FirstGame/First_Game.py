@@ -7,11 +7,11 @@ pygame.display.set_caption('First Game')
 clock = pygame.time.Clock()
 test_font = pygame.font.Font('./FirstGame/font/Pixeltype.ttf', 50)
 
-sky_surface = pygame.image.load('./FirstGame/graphics/Sky.png')
-ground_surface = pygame.image.load('./FirstGame/graphics/ground.png')
+sky_surface = pygame.image.load('./FirstGame/graphics/Sky.png').convert()
+ground_surface = pygame.image.load('./FirstGame/graphics/ground.png').convert()
 text_surface = test_font.render('First Game', False, 'Red')
 
-snail_surface = pygame.image.load('./FirstGame/graphics/snail/snail1.png')
+snail_surface = pygame.image.load('./FirstGame/graphics/snail/snail1.png').convert_alpha()
 snail_x_pos = 600
 
 while True:
