@@ -22,17 +22,26 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
+        #if event.type == pygame.MOUSEMOTION:
+        #    if player_rectangle.collidepoint(event.pos): print('Collision')
     
     screen.blit(sky_surface, (0, 0))
     screen.blit(ground_surface, (0, 300))
     screen.blit(text_surface, (300, 50))
     
     snail_rectangle.x -=4
-    if(snail_rectangle.right <= 0): snail_rectangle.left = 800
+    if(snail_rectangle.right <= 0): snail_rectangle.left = 800  
     screen.blit(snail_surface, snail_rectangle)
+    
     player_rectangle.left += 1
     screen.blit(player_surface, player_rectangle)
 
+    #if player_rectangle.colliderect(snail_rectangle): 
+    #    print('Collision')
+        
+    #mouse_position = pygame.mouse.get_pos()
+    #if player_rectangle.collidepoint((mouse_position)): print(pygame.mouse.get_pressed())
+        
     #Draw all elements & Update everything
     pygame.display.update()
     clock.tick(60)
