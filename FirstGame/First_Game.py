@@ -1,6 +1,7 @@
 import pygame
 from sys import exit
 from random import randint, choice
+import vlc
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
@@ -14,11 +15,15 @@ class Player(pygame.sprite.Sprite):
         self.image = self.player_walk[self.player_index]
         self.rect = self.image.get_rect(midbottom = (80, 300)) 
         self.gravity = 0
+        
+        self.jump_sound = pygame.mixer.Sound('./FirstGame/audio/jump.wav')
+        self.jump_sound.set_volume(5)
 
     def player_input(self):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_SPACE] and self.rect.bottom >= 300:
             self.gravity = -20
+            self.jump_sound.play()
     
     def apply_gravity(self):
         self.gravity += 1
@@ -126,6 +131,8 @@ test_font = pygame.font.Font('./FirstGame/font/Pixeltype.ttf', 50)
 game_active = False
 start_time = 0
 score = 0
+background_music = pygame.mixer.Sound('./FirstGame/audio/music.wav')
+background_music.play(loops = -1)
 
 #Groups
 player = pygame.sprite.GroupSingle()
