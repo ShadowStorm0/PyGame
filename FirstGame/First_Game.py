@@ -25,11 +25,11 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if player_rect.collidepoint(event.pos): 
+        if event.type == pygame.MOUSEBUTTONDOWN:       #Jump on Floor
+            if player_rect.collidepoint(event.pos) and player_rect.bottom >= 300: 
                 player_gravity = -20
-        if event.type == pygame.KEYDOWN: 
-            if event.key == pygame.K_SPACE: 
+        if event.type == pygame.KEYDOWN:       #Jump on Floor
+            if event.key == pygame.K_SPACE and player_rect.bottom >= 300: 
                 player_gravity = -20
 
     screen.blit(sky_surf, (0, 0))
@@ -47,6 +47,8 @@ while True:
     #Player
     player_gravity += 1
     player_rect.y += player_gravity
+    if player_rect.bottom >= 300: #Floor
+        player_rect.bottom = 300
     screen.blit(player_surf, player_rect)
 
     #Draw all elements & Update everything
