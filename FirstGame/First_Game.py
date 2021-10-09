@@ -26,7 +26,11 @@ while True:
             exit()
         #if event.type == pygame.MOUSEMOTION:
         #    if player_rect.collidepoint(event.pos): print('Collision')
-    
+        if event.type == pygame.KEYDOWN: 
+            if event.key == pygame.K_SPACE: 
+                print('Jump')
+        if event.type == pygame.KEYUP: print('Key Up')
+
     screen.blit(sky_surf, (0, 0))
     screen.blit(ground_surf, (0, 300))
     
@@ -35,17 +39,22 @@ while True:
     screen.blit(score_surf, score_rect)
     
     snail_rect.x -=4
-    if(snail_rect.right <= 0): snail_rect.left = 800  
-    screen.blit(snail_surf, snail_rect)
+    if(snail_rect.right <= 0): 
+        snail_rect.left = 800  
+    screen.blit(snail_surf, snail_rect)  
     
-    player_rect.left += 1
     screen.blit(player_surf, player_rect)
+    
+    # keys = pygame.key.get_pressed()
+    # if keys[pygame.K_SPACE]: 
+    #   print('jump')
 
     #if player_rect.colliderect(snail_rect): 
     #    print('Collision')
         
     #mouse_position = pygame.mouse.get_pos()
-    #if player_rect.collidepoint((mouse_position)): print(pygame.mouse.get_pressed())
+    #if player_rect.collidepoint((mouse_position)): 
+    #   print(pygame.mouse.get_pressed())
         
     #Draw all elements & Update everything
     pygame.display.update()
