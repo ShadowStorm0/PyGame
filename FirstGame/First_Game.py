@@ -32,13 +32,13 @@ class Player(pygame.sprite.Sprite):
             self.rect.bottom = 300
     
     def animation_state(self):        
-        # display walking animation when player is on floor
-        # display the jump surface when player is not on floor
+        # Display walking animation when player is on floor
+        # Display the jump surface when player is not on floor
         if self.rect.bottom < 300: # Check if player is not on ground
             self.image = self.player_jump # Jumping animation
         else:
             self.player_index += 0.1
-            if self.player_index >= len(self.player_walk): self.player_index = 0 #loop back to 0 when reaches 1 [Restart Animation]
+            if self.player_index >= len(self.player_walk): self.player_index = 0 # loop back to 0 when reaches 1 [Restart Animation]
             self.image = self.player_walk[int(self.player_index)] # Player walking animation
     
     def update(self):
@@ -49,10 +49,6 @@ class Player(pygame.sprite.Sprite):
 class Obstacle(pygame.sprite.Sprite):
     def __init__(self, type):
         super().__init__()
-        
-        self.animation_index = 0
-        self.image = self.frames[self.animation_index]
-        self.rect = self.image.get_rect(midbottom = (randint(900, 1100), y_pos))
         
         if type == 'fly':
             fly_1 = pygame.image.load('./FirstGame/graphics/Fly/Fly1.png').convert_alpha()
@@ -65,6 +61,10 @@ class Obstacle(pygame.sprite.Sprite):
            self.frames = [snail_1, snail_2]# Animation list 
            y_pos = 300
         
+        self.animation_index = 0
+        self.image = self.frames[self.animation_index]
+        self.rect = self.image.get_rect(midbottom = (randint(900, 1100), y_pos))
+
     def animation_state(self): 
         self.animation_index += 0.1
         if self.animation_index >= len(self.frames): self.animation_index = 0
