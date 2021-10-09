@@ -1,7 +1,6 @@
 import pygame
 from sys import exit
 from random import randint, choice
-import vlc
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
