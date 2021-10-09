@@ -5,6 +5,7 @@ from random import randint, choice
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
+        
         player_walk_1 = pygame.image.load('./FirstGame/graphics/Player/player_walk_1.png').convert_alpha()
         player_walk_2 = pygame.image.load('./FirstGame/graphics/Player/player_walk_2.png').convert_alpha()
         self.player_walk = [player_walk_1, player_walk_2]
@@ -49,6 +50,10 @@ class Obstacle(pygame.sprite.Sprite):
     def __init__(self, type):
         super().__init__()
         
+        self.animation_index = 0
+        self.image = self.frames[self.animation_index]
+        self.rect = self.image.get_rect(midbottom = (randint(900, 1100), y_pos))
+        
         if type == 'fly':
             fly_1 = pygame.image.load('./FirstGame/graphics/Fly/Fly1.png').convert_alpha()
             fly_2 = pygame.image.load('./FirstGame/graphics/Fly/Fly2.png').convert_alpha()
@@ -59,11 +64,7 @@ class Obstacle(pygame.sprite.Sprite):
            snail_2 = pygame.image.load('./FirstGame/graphics/snail/snail2.png').convert_alpha()
            self.frames = [snail_1, snail_2]# Animation list 
            y_pos = 300
-           
-        self.animation_index = 0
-        self.image = self.frames[self.animation_index]
-        self.rect = self.image.get_rect(midbottom = (randint(900, 1100), y_pos))
-
+        
     def animation_state(self): 
         self.animation_index += 0.1
         if self.animation_index >= len(self.frames): self.animation_index = 0
