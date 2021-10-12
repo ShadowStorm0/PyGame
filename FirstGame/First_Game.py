@@ -7,17 +7,17 @@ def main():
         def __init__(self):
             super().__init__()
             
-            player_walk_1 = pygame.image.load('./FirstGame/graphics/Player/player_walk_1.png').convert_alpha()
-            player_walk_2 = pygame.image.load('./FirstGame/graphics/Player/player_walk_2.png').convert_alpha()
+            player_walk_1 = pygame.image.load('./graphics/Player/player_walk_1.png').convert_alpha()
+            player_walk_2 = pygame.image.load('./graphics/Player/player_walk_2.png').convert_alpha()
             self.player_walk = [player_walk_1, player_walk_2]
             self.player_index = 0
-            self.player_jump = pygame.image.load('./FirstGame/graphics/Player/jump.png').convert_alpha()
+            self.player_jump = pygame.image.load('./graphics/Player/jump.png').convert_alpha()
             
             self.image = self.player_walk[self.player_index]
             self.rect = self.image.get_rect(midbottom = (80, 300)) 
             self.gravity = 0
             
-            self.jump_sound = pygame.mixer.Sound('./FirstGame/audio/jump.wav')
+            self.jump_sound = pygame.mixer.Sound('./audio/jump.wav')
             self.jump_sound.set_volume(5)
 
         def player_input(self):
@@ -51,13 +51,13 @@ def main():
             super().__init__()
             
             if type == 'fly':
-                fly_1 = pygame.image.load('./FirstGame/graphics/Fly/Fly1.png').convert_alpha()
-                fly_2 = pygame.image.load('./FirstGame/graphics/Fly/Fly2.png').convert_alpha()
+                fly_1 = pygame.image.load('./graphics/Fly/Fly1.png').convert_alpha()
+                fly_2 = pygame.image.load('./graphics/Fly/Fly2.png').convert_alpha()
                 self.frames = [fly_1, fly_2]# Animation list
                 y_pos = 210
             else:
-                snail_1 = pygame.image.load('./FirstGame/graphics/snail/snail1.png').convert_alpha()
-                snail_2 = pygame.image.load('./FirstGame/graphics/snail/snail2.png').convert_alpha()
+                snail_1 = pygame.image.load('./graphics/snail/snail1.png').convert_alpha()
+                snail_2 = pygame.image.load('./graphics/snail/snail2.png').convert_alpha()
                 self.frames = [snail_1, snail_2]# Animation list 
                 y_pos = 300
             
@@ -96,11 +96,11 @@ def main():
     screen = pygame.display.set_mode((800, 400))
     pygame.display.set_caption('First Game')
     clock = pygame.time.Clock()
-    test_font = pygame.font.Font('./FirstGame/font/Pixeltype.ttf', 50)
+    test_font = pygame.font.Font('./font/Pixeltype.ttf', 50)
     game_active = False
     start_time = 0
     score = 0
-    background_music = pygame.mixer.Sound('./FirstGame/audio/music.wav')
+    background_music = pygame.mixer.Sound('./audio/music.wav')
     background_music.play(loops = -1)
 
     # Groups
@@ -109,11 +109,11 @@ def main():
     obstacle_group  = pygame.sprite.Group()
 
     # Background
-    sky_surf = pygame.image.load('./FirstGame/graphics/Sky.png').convert()
-    ground_surf = pygame.image.load('./FirstGame/graphics/ground.png').convert()
+    sky_surf = pygame.image.load('./graphics/Sky.png').convert()
+    ground_surf = pygame.image.load('./graphics/ground.png').convert()
 
     # Intro Screen
-    player_stand = pygame.image.load('./FirstGame/graphics/Player/player_stand.png').convert_alpha()
+    player_stand = pygame.image.load('./graphics/Player/player_stand.png').convert_alpha()
     player_stand = pygame.transform.rotozoom(player_stand, 0, 2) #Angle, Zoom
     player_stand_rect = player_stand.get_rect(center = (400, 200))
 
