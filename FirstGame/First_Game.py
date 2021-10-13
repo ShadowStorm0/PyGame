@@ -140,10 +140,7 @@ def main():
     fly_animation_timer = pygame.USEREVENT + 3
     pygame.time.set_timer(fly_animation_timer, 200)
 
-    while True:
-        
-        #pygame.draw.rect(screen, (255, 0, 0), pygame.Rect(screen.get_width() - 5 - (screen.get_width() / 5), 50, screen.get_width() / 5, 50))
-        
+    while True:         
         for event in pygame.event.get():
             # Closes by 'X' button
             if event.type == pygame.QUIT:
