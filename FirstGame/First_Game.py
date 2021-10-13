@@ -2,6 +2,8 @@ import pygame
 from sys import exit
 from random import randint, choice
 
+from pygame.constants import K_ESCAPE, KEYDOWN
+
 def main():
     class Player(pygame.sprite.Sprite):
         def __init__(self):
@@ -139,10 +141,17 @@ def main():
 
     while True:
         for event in pygame.event.get():
+            # Closes by 'X' button
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
-                
+
+            # Closes by escape button
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE:
+                    pygame.quit()
+                    pygame.exit
+
             # Start / Restart Game
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE: game_active = True
             
@@ -162,32 +171,34 @@ def main():
             player.draw(screen)
             player.update()
             
-            # Obstacle
+            # Obstacle(s)
             obstacle_group.draw(screen)
             obstacle_group.update()
             
             # Collision (True / False)
             game_active = collision_sprite()
             
-        # Start & Score Message
+        # Start & Score Message (Start Screen & Game Over)
         else:
             screen.fill((94, 129, 162)) # Background Color
             screen.blit(player_stand, player_stand_rect) # Displays start player model
             start_time = int(pygame.time.get_ticks() / 1000) # Resets time score
             player_gravity = 0 # Reset player gravity
-                                                                    # AA        RBG
+             
+            # Game over score                                                       # AA        RBG
             score_message = test_font.render(f'Your Score: {score}', False, (111, 196, 169))
             score_message_rect = score_message.get_rect(center = (400, 330))
             screen.blit(game_name, game_name_rect)# Start screen title
             
             # Logic to if display score on start screen
-            if score == 0: screen.blit(game_message, game_message_rect) # 'Press space to run'
+            if score == 0: screen.blit(game_message, game_message_rect) # 'Press space to run' Message
             else: screen.blit(score_message, score_message_rect)
 
         # Draw all elements & Update everything
         pygame.display.update()
         clock.tick(60)
 
+#Check if not an import
 if __name__ == '__main__':
     main()
 else: 
