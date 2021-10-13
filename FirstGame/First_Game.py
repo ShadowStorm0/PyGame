@@ -55,11 +55,15 @@ def main():
                 fly_2 = pygame.image.load('./graphics/Fly/Fly2.png').convert_alpha()
                 self.frames = [fly_1, fly_2]# Animation list
                 y_pos = 210
-            else:
+            elif type == 'snail':
                 snail_1 = pygame.image.load('./graphics/snail/snail1.png').convert_alpha()
                 snail_2 = pygame.image.load('./graphics/snail/snail2.png').convert_alpha()
                 self.frames = [snail_1, snail_2]# Animation list 
                 y_pos = 300
+            elif type == 'blank':
+                nothing = pygame.image.load('./graphics/blank.png').convert_alpha()
+                self.frames = [nothing]
+                y_pos = 0
             
             self.animation_index = 0
             self.image = self.frames[self.animation_index]
@@ -145,7 +149,7 @@ def main():
             # Selects one in the list to draw
             if game_active:
                 if event.type == obstacle_timer:
-                    obstacle_group.add(Obstacle(choice(['fly', 'snail', 'snail', 'snail'])))
+                    obstacle_group.add(Obstacle(choice(['fly', 'snail', 'blank'])))
 
         # Game Loop
         if game_active:
