@@ -1,8 +1,7 @@
 import pygame
 from sys import exit
+from pygame.locals import *
 from random import randint, choice
-
-from pygame.constants import K_ESCAPE, KEYDOWN
 
 def main():
     class Player(pygame.sprite.Sprite):
@@ -99,7 +98,8 @@ def main():
         
     # Starting PyGame  
     pygame.init()
-    screen = pygame.display.set_mode((800, 400))
+    monitor_size = [pygame.display.Info().current_w, pygame.display.Info().current_h]
+    screen = pygame.display.set_mode((800, 400), pygame.RESIZABLE)
     pygame.display.set_caption('First Game')
     clock = pygame.time.Clock()
     test_font = pygame.font.Font('./font/Pixeltype.ttf', 50)
@@ -108,6 +108,7 @@ def main():
     score = 0
     background_music = pygame.mixer.Sound('./audio/music.wav')
     background_music.play(loops = -1)
+    fullscreen = False
 
     # Groups
     player = pygame.sprite.GroupSingle()
@@ -140,18 +141,33 @@ def main():
     pygame.time.set_timer(fly_animation_timer, 200)
 
     while True:
+        
+        #pygame.draw.rect(screen, (255, 0, 0), pygame.Rect(screen.get_width() - 5 - (screen.get_width() / 5), 50, screen.get_width() / 5, 50))
+        
         for event in pygame.event.get():
             # Closes by 'X' button
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
 
+#            Window resize
+            if event.type == WINDOWRESIZED:
+                if not FULLSCREEN:
+                    screen = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
+
             # Closes by escape button
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
                     pygame.quit()
                     pygame.exit
-
+                    
+                if event.key == K_f:
+                    fullscreen = not fullscreen
+                    if fullscreen:
+                        screen = pygame.display.set_mode(monitor_size, pygame.FULLSCREEN)
+                    else:
+                        screen = pygame.display.set_mode((screen.get_width(), screen.get_height()), pygame.RESIZABLE)
+                    
             # Start / Restart Game
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE: game_active = True
             
