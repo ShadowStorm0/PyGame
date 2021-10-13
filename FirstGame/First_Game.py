@@ -149,7 +149,7 @@ def main():
             # Selects one in the list to draw
             if game_active:
                 if event.type == obstacle_timer:
-                    obstacle_group.add(Obstacle(choice(['fly', 'snail', 'blank'])))
+                    obstacle_group.add(Obstacle(choice(['fly', 'snail', 'snail', 'blank'])))
 
         # Game Loop
         if game_active:
